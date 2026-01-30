@@ -1,10 +1,11 @@
-import { 
-  Languages, 
-  BookOpen, 
-  Calculator, 
-  Beaker, 
-  ScrollText, 
-  MoreHorizontal 
+import { useNavigate } from 'react-router-dom';
+import {
+  Languages,
+  BookOpen,
+  Calculator,
+  Beaker,
+  ScrollText,
+  MoreHorizontal
 } from 'lucide-react';
 import CategoryCard from '../components/CategoryCard';
 import Navbar from '../components/Navbar';
@@ -54,13 +55,21 @@ const CATEGORIES = [
   }
 ];
 
-export default function Dashboard({ onCategoryClick, onLogout }: { 
-  onCategoryClick: (id: string) => void;
-  onLogout: () => void;
-}) {
+export default function Dashboard() {
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (id: string) => {
+    navigate(`/chat/${id}`);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('isLoggedIn');
+    navigate('/login');
+  };
+
   return (
     <div className="min-h-screen bg-[#fafafa]">
-      <Navbar onLogout={onLogout} />
+      <Navbar onLogout={handleLogout} />
       
       <main className="max-w-7xl mx-auto px-6 py-12">
         <div className="mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -84,7 +93,7 @@ export default function Dashboard({ onCategoryClick, onLogout }: {
                 icon={cat.icon}
                 color={cat.color}
                 description={cat.description}
-                onClick={() => onCategoryClick(cat.id)}
+                onClick={() => handleCategoryClick(cat.id)}
               />
             </div>
           ))}

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff, Loader2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { cn } from '../lib/utils';
 
-export default function LoginPage({ onLogin }: { onLogin: () => void }) {
+export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -12,7 +14,8 @@ export default function LoginPage({ onLogin }: { onLogin: () => void }) {
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
-      onLogin();
+      localStorage.setItem('isLoggedIn', 'true');
+      navigate('/dashboard');
     }, 1500);
   };
 
