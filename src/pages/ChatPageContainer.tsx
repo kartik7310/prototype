@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ChatSidebar from '../components/ChatSidebar';
 import ChatInterface from './ChatPage';
 import { ChevronDown } from "lucide-react";
@@ -8,7 +8,7 @@ export default function ChatPageContainer() {
  
 
   const { categoryId } = useParams();
-  const navigate = useNavigate();
+
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
    const [sidebarOpen, setSidebarOpen] = useState(false);
 
