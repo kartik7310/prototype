@@ -31,7 +31,7 @@ export default function Navbar({ onLogout }: { onLogout: () => void }) {
 
         <div className="flex items-center space-x-3 group cursor-pointer pl-2">
           <div className="text-right hidden sm:block">
-            <p className="text-sm font-semibold text-slate-900 leading-none">Kartik Lathiyan</p>
+            <p className="text-sm font-semibold text-slate-900 leading-none">Paramveer Kushwaha</p>
             <p className="text-xs text-slate-500 mt-1">Enterprise Plan</p>
           </div>
           <div className="relative">

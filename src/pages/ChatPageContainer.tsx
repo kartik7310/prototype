@@ -2,14 +2,18 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ChatSidebar from '../components/ChatSidebar';
 import ChatInterface from './ChatPage';
+import { ChevronDown } from "lucide-react";
 
 export default function ChatPageContainer() {
+ 
+
   const { categoryId } = useParams();
   const navigate = useNavigate();
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
+   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
-    // Auto-start a session if none is active when landing on a category
+  
     if (!activeChatId) {
       setActiveChatId('initial-' + Date.now());
     }
@@ -21,12 +25,28 @@ export default function ChatPageContainer() {
 
   return (
     <div className="flex h-screen w-full bg-white animate-in fade-in duration-500 overflow-hidden">
+     <button
+  className="
+    md:hidden
+    fixed top-2 left-1/2 -translate-x-1/2
+    z-50
+    p-1.5
+    rounded-full
+    bg-slate-900/90
+    text-white
+    shadow-lg
+  "
+  onClick={() => setSidebarOpen(true)}
+>
+  <ChevronDown size={18} />
+</button>
+
+      
       <ChatSidebar 
-        categoryName={categoryId || ''}
         activeChatId={activeChatId}
         onChatSelect={setActiveChatId}
-        onNewChat={() => setActiveChatId('new-' + Date.now())}
-        onBack={handleBackToDashboard}
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
       />
       <ChatInterface 
         categoryName={categoryId || ''}
