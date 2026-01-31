@@ -19,9 +19,7 @@ export default function ChatPageContainer() {
     }
   }, [categoryId, activeChatId]);
 
-  const handleBackToDashboard = () => {
-    navigate('/dashboard');
-  };
+ 
 
   return (
     <div className="flex h-screen w-full bg-white animate-in fade-in duration-500 overflow-hidden">
